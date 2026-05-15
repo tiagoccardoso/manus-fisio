@@ -7,12 +7,12 @@ import { Badge } from '@/components/ui/badge'
 import { supabase } from '@/lib/supabase/client'
 import { isMockMode } from '@/lib/auth'
 import { useAuth } from '@/hooks/use-auth-fixed'
-import { 
-  Bell, 
-  X, 
-  Calendar, 
-  Users, 
-  FolderKanban, 
+import {
+  Bell,
+  X,
+  Calendar,
+  Users,
+  FolderKanban,
   AlertTriangle,
   CheckCircle,
   Clock,
@@ -127,10 +127,10 @@ const mockNotifications: Notification[] = [
   }
 ]
 
-export function SmartNotifications({ 
-  showAll = false, 
-  maxVisible = 5, 
-  className = '' 
+export function SmartNotifications({
+  showAll = false,
+  maxVisible = 5,
+  className = ''
 }: SmartNotificationsProps) {
   const { user } = useAuth()
   const [notifications, setNotifications] = useState<Notification[]>(mockNotifications)
@@ -143,14 +143,6 @@ export function SmartNotifications({
 
   const isUsingMock = isMockMode()
 
-  useEffect(() => {
-    if (!isUsingMock && user) {
-      loadNotifications()
-      subscribeToNotifications()
-    } else {
-      setNotifications(mockNotifications)
-    }
-  }, [user, isUsingMock])
 
   useEffect(() => {
     const unread = notifications.filter(n => !n.read).length
@@ -159,7 +151,7 @@ export function SmartNotifications({
 
   const loadNotifications = async () => {
     if (isUsingMock) return
-    
+
     try {
       setLoading(true)
       const { data, error } = await supabase
@@ -189,41 +181,59 @@ export function SmartNotifications({
   }
 
   const subscribeToNotifications = useCallback(() => {
-    if (isUsingMock || !user) return
+    if (isUsingMock || !user) return undefined
 
-    const subscription = supabase
-      .channel('notifications')
-      .on(
-        'postgres_changes',
-        {
-          event: 'INSERT',
-          schema: 'public',
-          table: 'notifications',
-          filter: `user_id=eq.${user.id}`
-        },
-        (payload: any) => {
-          const newNotification = payload.new as Notification
-          setNotifications(prev => [newNotification, ...prev])
-          
-          // Mostrar notificação do browser se permitido
-          if ('Notification' in window && Notification.permission === 'granted') {
-            new Notification(newNotification.title, {
-              body: newNotification.message,
-              icon: '/favicon.ico'
-            })
+    const channelName = `notifications_${user.id}_${Date.now()}_${Math.random().toString(36).slice(2)}`
+
+    try {
+      const channel = supabase
+        .channel(channelName)
+        .on(
+          'postgres_changes',
+          {
+            event: 'INSERT',
+            schema: 'public',
+            table: 'notifications',
+            filter: `user_id=eq.${user.id}`
+          },
+          (payload: any) => {
+            const newNotification = payload.new as Notification
+            setNotifications(prev => [newNotification, ...prev])
+
+            // Mostrar notificação do browser se permitido
+            if ('Notification' in window && Notification.permission === 'granted') {
+              new Notification(newNotification.title, {
+                body: newNotification.message,
+                icon: '/favicon.ico'
+              })
+            }
           }
-        }
-      )
-      .subscribe()
+        )
 
-    return () => {
-      subscription.unsubscribe()
+      channel.subscribe()
+
+      return () => {
+        supabase.removeChannel(channel)
+      }
+    } catch (error) {
+      console.error('Erro ao assinar notificações em tempo real:', error)
+      return undefined
     }
-  }, [user, isUsingMock])
+  }, [user?.id, isUsingMock])
+
+  useEffect(() => {
+    if (!isUsingMock && user) {
+      loadNotifications()
+      return subscribeToNotifications()
+    }
+
+    setNotifications(mockNotifications)
+    return undefined
+  }, [user?.id, isUsingMock, showAll, maxVisible, subscribeToNotifications])
 
   const markAsRead = async (notificationId: string) => {
     // Atualizar estado local imediatamente
-    setNotifications(prev => 
+    setNotifications(prev =>
       prev.map(n => n.id === notificationId ? { ...n, read: true } : n)
     )
 
@@ -308,8 +318,8 @@ export function SmartNotifications({
     }
   }
 
-  const visibleNotifications = showAll 
-    ? notifications 
+  const visibleNotifications = showAll
+    ? notifications
     : notifications.slice(0, maxVisible)
 
   const handleSettingChange = async (key: string, value: any) => {
@@ -328,7 +338,7 @@ export function SmartNotifications({
         return
       }
     }
-    
+
     await handleSettingChange('push_notifications', enabled)
   }
 
@@ -362,9 +372,9 @@ export function SmartNotifications({
             )}
           </CardTitle>
           {unreadCount > 0 && (
-            <Button 
-              variant="ghost" 
-              size="sm" 
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={markAllAsRead}
             >
               Marcar todas como lidas
@@ -375,7 +385,7 @@ export function SmartNotifications({
           Notificações inteligentes para fisioterapia
         </CardDescription>
       </CardHeader>
-      
+
       <CardContent>
         {visibleNotifications.length === 0 ? (
           <div className="text-center py-8 text-muted-foreground">
@@ -388,8 +398,8 @@ export function SmartNotifications({
               <div
                 key={notification.id}
                 className={`p-3 rounded-lg border transition-colors ${
-                  notification.read 
-                    ? 'bg-background border-border opacity-60' 
+                  notification.read
+                    ? 'bg-background border-border opacity-60'
                     : 'bg-muted border-blue-200'
                 }`}
               >
@@ -397,7 +407,7 @@ export function SmartNotifications({
                   <div className={`p-2 rounded-full text-white ${getPriorityColor(notification.priority)}`}>
                     {getNotificationIcon(notification.type)}
                   </div>
-                  
+
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between">
                       <div>
@@ -416,7 +426,7 @@ export function SmartNotifications({
                           </span>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center gap-1">
                         {!notification.read && (
                           <Button
@@ -442,7 +452,7 @@ export function SmartNotifications({
             ))}
           </div>
         )}
-        
+
         {!showAll && notifications.length > maxVisible && (
           <div className="text-center mt-4">
             <Button variant="outline" size="sm">
@@ -472,9 +482,9 @@ export function useSmartNotifications() {
       id: Date.now().toString(),
       created_at: new Date().toISOString()
     }
-    
+
     setNotifications(prev => [newNotification, ...prev])
-    
+
     // Mostrar notificação do browser se permitido
     if ('Notification' in window && Notification.permission === 'granted') {
       new Notification(newNotification.title, {
@@ -523,7 +533,7 @@ export function NotificationSettings() {
         return
       }
     }
-    
+
     await handleSettingChange('push_notifications', enabled)
   }
 
@@ -796,12 +806,12 @@ export function NotificationSettings() {
                   {isSupported ? 'Suportado' : 'Não suportado'}
                 </Badge>
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <span className="text-sm">Permissão para notificações push</span>
-                <Badge 
+                <Badge
                   variant={
-                    permission === 'granted' ? 'default' : 
+                    permission === 'granted' ? 'default' :
                     permission === 'denied' ? 'destructive' : 'secondary'
                   }
                 >
@@ -840,7 +850,7 @@ export function NotificationSettings() {
                   toast.success('Teste de Notificação', {
                     description: 'Esta é uma notificação de teste para verificar suas configurações.',
                   })
-                  
+
                   if (settings.push_notifications && permission === 'granted') {
                     new Notification('Manus Fisio - Teste', {
                       body: 'Esta é uma notificação push de teste.',
@@ -859,4 +869,4 @@ export function NotificationSettings() {
       </DialogContent>
     </Dialog>
   )
-} 
+}

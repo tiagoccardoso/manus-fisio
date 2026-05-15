@@ -268,8 +268,10 @@ export function useRealtimeNotifications() {
   React.useEffect(() => {
     if (!user) return
 
+    const channelName = `notifications_changes_${user.id}_${Date.now()}_${Math.random().toString(36).slice(2)}`
+
     const channel = supabase
-      .channel('notifications_changes')
+      .channel(channelName)
       .on(
         'postgres_changes' as any,
         {
@@ -280,7 +282,7 @@ export function useRealtimeNotifications() {
         },
         (payload: { eventType: string; new: Notification; old?: Notification }) => {
           console.log('Notification change:', payload)
-          
+
           // Invalidar queries para atualizar a UI
           queryClient.invalidateQueries({ queryKey: ['notifications'] })
           queryClient.invalidateQueries({ queryKey: ['notifications-unread'] })
@@ -289,7 +291,7 @@ export function useRealtimeNotifications() {
           if (payload.eventType === 'INSERT') {
             const notification = payload.new as Notification
             showNotificationToast(notification)
-            
+
             // Tentar mostrar push notification
             if ('Notification' in window && Notification.permission === 'granted') {
               showPushNotification(notification)
@@ -396,7 +398,7 @@ export function usePushNotificationPermission() {
     try {
       const result = await Notification.requestPermission()
       setPermission(result)
-      
+
       if (result === 'granted') {
         toast.success('Permissão para notificações concedida!')
         return true
@@ -436,7 +438,7 @@ export function useNotificationStats() {
 
       const total = data.length
       const unread = data.filter((n: { read: boolean }) => !n.read).length
-      const today = data.filter((n: { created_at: string }) => 
+      const today = data.filter((n: { created_at: string }) =>
         new Date(n.created_at).toDateString() === new Date().toDateString()
       ).length
       const thisWeek = data.filter((n: { created_at: string }) => {
@@ -588,4 +590,4 @@ export function useAdvancedNotificationSettings() {
     },
     enabled: !!user,
   })
-} 
+}
