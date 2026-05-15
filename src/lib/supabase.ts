@@ -21,6 +21,34 @@ const hasValidCredentials = () => {
 }
 
 // Mock client para desenvolvimento
+const createMockQueryBuilder = () => {
+  const builder: any = {
+    select: () => builder,
+    insert: () => builder,
+    update: () => builder,
+    upsert: () => builder,
+    delete: () => builder,
+    eq: () => builder,
+    neq: () => builder,
+    gt: () => builder,
+    gte: () => builder,
+    lt: () => builder,
+    lte: () => builder,
+    in: () => builder,
+    is: () => builder,
+    not: () => builder,
+    or: () => builder,
+    order: () => builder,
+    limit: () => builder,
+    range: () => builder,
+    single: () => Promise.resolve({ data: null, error: null }),
+    maybeSingle: () => Promise.resolve({ data: null, error: null }),
+    then: (resolve: any) => resolve({ data: [], error: null, count: 0 }),
+  }
+
+  return builder
+}
+
 const createMockSupabaseClient = () => {
   console.warn('🚧 Supabase Mock Mode: Credenciais não encontradas ou inválidas.')
 
@@ -37,22 +65,14 @@ const createMockSupabaseClient = () => {
       signOut: () => Promise.resolve({ error: null }),
       onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } })
     },
-    from: () => ({
-      select: () => ({
-        eq: () => ({
-          single: () => Promise.resolve({ data: null, error: null }),
-          order: () => Promise.resolve({ data: [], error: null })
-        }),
-        order: () => Promise.resolve({ data: [], error: null })
-      }),
-      insert: () => Promise.resolve({ data: null, error: null }),
-      update: () => Promise.resolve({ data: null, error: null }),
-      delete: () => Promise.resolve({ data: null, error: null })
-    }),
+    from: () => createMockQueryBuilder(),
     channel: () => ({
-      on: () => ({ subscribe: () => Promise.resolve() }),
+      on: function () { return this },
+      subscribe: () => ({ unsubscribe: () => {} }),
       unsubscribe: () => Promise.resolve()
-    })
+    }),
+    removeChannel: () => Promise.resolve('ok'),
+    removeAllChannels: () => Promise.resolve([]),
   } as any
 }
 
