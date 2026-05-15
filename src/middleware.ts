@@ -8,67 +8,45 @@ export async function middleware(request: NextRequest) {
     },
   })
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return request.cookies.get(name)?.value
-        },
-        set(name: string, value: string, options: any) {
-          request.cookies.set({
-            name,
-            value,
-            ...options,
-          })
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          })
-          response.cookies.set({
-            name,
-            value,
-            ...options,
-          })
-        },
-        remove(name: string, options: any) {
-          request.cookies.set({
-            name,
-            value: '',
-            ...options,
-          })
-          response = NextResponse.next({
-            request: {
-              headers: request.headers,
-            },
-          })
-          response.cookies.set({
-            name,
-            value: '',
-            ...options,
-          })
-        },
-      },
-    }
-  )
-
   // Skip middleware for auth callback route
   if (request.nextUrl.pathname === '/auth/callback') {
     return response
   }
-  
-  // Modo desenvolvimento ou mock: permitir acesso livre
-  const isMockMode = process.env.NODE_ENV === 'development' || 
-                     !process.env.NEXT_PUBLIC_SUPABASE_URL || 
-                     !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-                     process.env.NEXT_PUBLIC_MOCK_AUTH === 'true'
+
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+  // Modo desenvolvimento ou mock: permitir acesso livre.
+  // Importante: verificar isso antes de criar o cliente Supabase, pois
+  // createServerClient lança erro quando URL/chave não estão configuradas.
+  const isMockMode = process.env.NODE_ENV === 'development' ||
+                     !supabaseUrl ||
+                     !supabaseAnonKey ||
+                     process.env.NEXT_PUBLIC_MOCK_AUTH === 'true' ||
+                     process.env.NEXT_PUBLIC_MOCK_MODE === 'true'
 
   if (isMockMode) {
     console.log('Middleware em modo mock - permitindo acesso', request.nextUrl.pathname)
     return response
   }
+
+  const supabase = createServerClient(
+    supabaseUrl,
+    supabaseAnonKey,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll()
+        },
+        setAll(cookiesToSet: Array<{ name: string; value: string; options: any }>) {
+          cookiesToSet.forEach(({ name, value, options }) => {
+            request.cookies.set(name, value)
+            response.cookies.set(name, value, options)
+          })
+        },
+      },
+    }
+  )
 
   try {
     // Verificar se há uma sessão válida
