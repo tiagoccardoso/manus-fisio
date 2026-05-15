@@ -107,12 +107,12 @@ export function useCreateEvent() {
     onSuccess: (newEvent) => {
       // Invalidar cache dos eventos
       queryClient.invalidateQueries({ queryKey: ['calendar-events'] })
-      
+
       // Criar notificação para participantes
       if (newEvent.attendees.length > 0) {
         createEventNotifications(newEvent)
       }
-      
+
       toast.success('Evento criado com sucesso!')
     },
     onError: (error) => {
@@ -220,8 +220,10 @@ export function useRealtimeEvents() {
   React.useEffect(() => {
     if (!user) return
 
+    const channelName = `calendar_events_changes_${user.id}_${Date.now()}_${Math.random().toString(36).slice(2)}`
+
     const channel = supabase
-      .channel('calendar_events_changes')
+      .channel(channelName)
       .on(
         'postgres_changes',
         {
@@ -285,4 +287,4 @@ export function useEventStats() {
     enabled: !!user,
     staleTime: 1000 * 60 * 5,
   })
-} 
+}

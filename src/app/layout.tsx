@@ -1,10 +1,6 @@
 import './globals.css'
 import type { Metadata, Viewport } from 'next'
-import { AuthProvider } from '@/hooks/use-auth-fixed'
-import { QueryProvider } from '@/components/providers/query-provider'
-import { Toaster } from 'sonner'
-import { SmartNotifications } from '@/components/ui/smart-notifications'
-import { AIAssistantProvider } from '@/contexts/AIAssistantContext'
+import { AppProviders } from './providers'
 
 
 export const metadata: Metadata = {
@@ -97,20 +93,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <AIAssistantProvider>
-          <QueryProvider>
-            <AuthProvider>
-              <div id="root" className="min-h-screen bg-background text-foreground">
-                {children}
-              </div>
-              <Toaster 
-                position="top-right"
-                richColors
-                closeButton
-              />
-            </AuthProvider>
-          </QueryProvider>
-        </AIAssistantProvider>
+        <AppProviders>{children}</AppProviders>
       </body>
     </html>
   )
