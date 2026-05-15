@@ -1,14 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { createClient } from '@supabase/supabase-js';
-import { Database } from '@/types/database.types';
+import { supabaseAdmin as supabase } from '@/lib/supabase';
 import { authenticateRequest } from '@/lib/auth';
-
-// Configuração do Supabase
-const supabase = createClient<Database>(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
 
 // Schemas para validação de dados
 const EventSchema = z.object({
@@ -48,8 +41,8 @@ const tools = {
       properties: {
         start_date: { type: 'string', description: 'Data inicial (ISO string)' },
         end_date: { type: 'string', description: 'Data final (ISO string)' },
-        event_type: { 
-          type: 'string', 
+        event_type: {
+          type: 'string',
           enum: ['consulta', 'avaliacao', 'retorno', 'procedimento'],
           description: 'Tipo de evento'
         },
@@ -79,7 +72,7 @@ const tools = {
           content: [{
             type: 'text',
             text: `📅 Encontrados ${data?.length || 0} eventos:\n\n${
-              data?.map(event => 
+              data?.map((event: any) =>
                 `• ${event.title} (${event.event_type})\n` +
                 `  Data: ${new Date(event.start_time).toLocaleString('pt-BR')}\n` +
                 `  Paciente: ${typeof event.patients === 'object' && event.patients && 'full_name' in event.patients ? (event.patients as { full_name: string }).full_name : 'N/A'}\n` +
@@ -160,7 +153,7 @@ const tools = {
           content: [{
             type: 'text',
             text: `👥 Encontrados ${data?.length || 0} pacientes:\n\n${
-              data?.map(patient => 
+              data?.map((patient: any) =>
                 `• ${patient.full_name}\n` +
                 `  📧 ${patient.email || 'N/A'}\n` +
                 `  📱 ${patient.phone || 'N/A'}\n` +
@@ -221,13 +214,13 @@ const tools = {
     inputSchema: {
       type: 'object',
       properties: {
-        status: { 
-          type: 'string', 
-          enum: ['pendente', 'em_andamento', 'concluida', 'cancelada'] 
+        status: {
+          type: 'string',
+          enum: ['pendente', 'em_andamento', 'concluida', 'cancelada']
         },
-        priority: { 
-          type: 'string', 
-          enum: ['baixa', 'media', 'alta', 'urgente'] 
+        priority: {
+          type: 'string',
+          enum: ['baixa', 'media', 'alta', 'urgente']
         },
         assigned_to: { type: 'string' },
         limit: { type: 'number', minimum: 1, maximum: 50, default: 20 }
@@ -256,7 +249,7 @@ const tools = {
           content: [{
             type: 'text',
             text: `📋 Encontradas ${data?.length || 0} tarefas:\n\n${
-              data?.map(task => 
+              data?.map((task: any) =>
                 `• ${task.title}\n` +
                 `  📊 Status: ${task.status}\n` +
                 `  🔥 Prioridade: ${task.priority}\n` +
@@ -433,7 +426,7 @@ const tools = {
     handler: async (args: any) => {
       try {
         const { report_type, date_range, filters = {}, format = "pdf" } = args;
-        
+
         // Simulate report generation logic
         const reportData = {
           report_id: `report_${Date.now()}`,
@@ -453,14 +446,14 @@ const tools = {
             ]
           }
         };
-        
+
         return {
           content: [{
             type: "text",
             text: `📊 Relatório ${report_type} gerado com sucesso!\n\n` +
                   `📅 Período: ${date_range.start_date} a ${date_range.end_date}\n` +
                   `📈 Total de registros: ${reportData.summary.total_records}\n` +
-                  `💡 Insights principais:\n${reportData.summary.key_insights.map(i => `• ${i}`).join('\n')}\n\n` +
+                  `💡 Insights principais:\n${reportData.summary.key_insights.map((i: any) => `• ${i}`).join('\n')}\n\n` +
                   `🔗 Download: ${reportData.download_url}`
           }]
         };
@@ -502,7 +495,7 @@ const tools = {
     handler: async (args: any) => {
       try {
         const { backup_type, include_files = true, encryption = true } = args;
-        
+
         // Simulate backup process
         const backupResult = {
           backup_id: `backup_${Date.now()}`,
@@ -515,7 +508,7 @@ const tools = {
           storage_location: `s3://manus-backups/backup_${Date.now()}.tar.gz${encryption ? '.enc' : ''}`,
           retention_days: 90
         };
-        
+
         return {
           content: [{
             type: "text",
@@ -574,7 +567,7 @@ const tools = {
     handler: async (args: any) => {
       try {
         const { recipient_type, recipient_id, message_type, message, schedule_time } = args;
-        
+
         // Simulate WhatsApp notification sending
         const notificationResult = {
           notification_id: `whatsapp_${Date.now()}`,
@@ -586,7 +579,7 @@ const tools = {
           scheduled_for: schedule_time,
           delivery_status: schedule_time ? "pending" : "delivered"
         };
-        
+
         const messageContent = message || (() => {
           const messageTemplates: Record<string, string> = {
             appointment_reminder: "🏥 Lembrete: Você tem uma consulta de fisioterapia agendada para amanhã às 14h. Confirme sua presença!",
@@ -596,7 +589,7 @@ const tools = {
           };
           return messageTemplates[message_type] || messageTemplates.custom;
         })();
-        
+
         return {
           content: [{
             type: "text",
@@ -653,7 +646,7 @@ const tools = {
     handler: async (args: any) => {
       try {
         const { analysis_type, time_period, custom_period, include_predictions = false } = args;
-        
+
         // Simulate advanced analytics
         const analyticsResult = {
           analysis_id: `analytics_${Date.now()}`,
@@ -695,16 +688,16 @@ const tools = {
             resource_needs: "Contratar 1 fisioterapeuta adicional"
           } : null
         };
-        
+
         const metricsText = Object.entries(analyticsResult.metrics)
           .map(([key, value]) => `• ${key.replace(/_/g, ' ')}: ${value}`)
           .join('\n');
-        
-        const predictionsText = include_predictions && analyticsResult.predictions ? 
+
+        const predictionsText = include_predictions && analyticsResult.predictions ?
           `\n🔮 Previsões:\n${Object.entries(analyticsResult.predictions)
             .map(([key, value]) => `• ${key.replace(/_/g, ' ')}: ${value}`)
             .join('\n')}` : '';
-        
+
         return {
           content: [{
             type: "text",
@@ -732,7 +725,7 @@ export async function GET(
   context: { params: Promise<{ transport: string }> }
 ) {
   const { transport } = await context.params
-  
+
   if (transport !== 'stdio' && transport !== 'sse') {
     return NextResponse.json(
       { error: 'Transport not supported' },
@@ -743,21 +736,21 @@ export async function GET(
   // SSE transport
   if (transport === 'sse') {
     const encoder = new TextEncoder()
-    
+
     const stream = new ReadableStream({
       start(controller) {
         // Send initial connection
         controller.enqueue(
           encoder.encode(`data: ${JSON.stringify({ type: 'connection', status: 'connected' })}\n\n`)
         )
-        
+
         // Keep connection alive
         const interval = setInterval(() => {
           controller.enqueue(
             encoder.encode(`data: ${JSON.stringify({ type: 'ping', timestamp: Date.now() })}\n\n`)
           )
         }, 30000)
-        
+
         // Cleanup on close
         request.signal.addEventListener('abort', () => {
           clearInterval(interval)
@@ -801,14 +794,14 @@ export async function POST(
 
   try {
     const body = await request.json()
-    
+
     // Validate JSON-RPC format
     if (!body.jsonrpc || !body.method) {
       return NextResponse.json(
-        { 
-          jsonrpc: '2.0', 
+        {
+          jsonrpc: '2.0',
           error: { code: -32600, message: 'Invalid Request' },
-          id: body.id || null 
+          id: body.id || null
         },
         { status: 400 }
       )
@@ -836,7 +829,7 @@ export async function POST(
         return NextResponse.json({
           jsonrpc: '2.0',
           result: {
-            tools: Object.values(tools).map(tool => ({
+            tools: Object.values(tools).map((tool: any) => ({
               name: tool.name,
               description: tool.description,
               inputSchema: tool.inputSchema
@@ -848,7 +841,7 @@ export async function POST(
       case 'tools/call':
         const toolName = body.params?.name
         const toolArgs = body.params?.arguments || {}
-        
+
         if (!toolName || !tools[toolName as keyof typeof tools]) {
           return NextResponse.json({
             jsonrpc: '2.0',
@@ -860,7 +853,7 @@ export async function POST(
         try {
           const tool = tools[toolName as keyof typeof tools]
           const result = await tool.handler(toolArgs)
-          
+
           return NextResponse.json({
             jsonrpc: '2.0',
             result,
@@ -869,9 +862,9 @@ export async function POST(
         } catch (error) {
           return NextResponse.json({
             jsonrpc: '2.0',
-            error: { 
-              code: -32000, 
-              message: error instanceof Error ? error.message : 'Tool execution failed' 
+            error: {
+              code: -32000,
+              message: error instanceof Error ? error.message : 'Tool execution failed'
             },
             id: body.id
           })
@@ -886,10 +879,10 @@ export async function POST(
     }
   } catch (error) {
     return NextResponse.json(
-      { 
-        jsonrpc: '2.0', 
+      {
+        jsonrpc: '2.0',
         error: { code: -32700, message: 'Parse error' },
-        id: null 
+        id: null
       },
       { status: 400 }
     )
@@ -905,4 +898,4 @@ export async function OPTIONS() {
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     },
   });
-} 
+}

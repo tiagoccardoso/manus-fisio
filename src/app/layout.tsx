@@ -1,17 +1,11 @@
 import './globals.css'
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
 import { AuthProvider } from '@/hooks/use-auth-fixed'
 import { QueryProvider } from '@/components/providers/query-provider'
 import { Toaster } from 'sonner'
 import { SmartNotifications } from '@/components/ui/smart-notifications'
 import { AIAssistantProvider } from '@/contexts/AIAssistantContext'
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: 'Manus Fisio - Sistema de Gestão Clínica',
@@ -98,7 +92,7 @@ export default function RootLayout({
 
   return (
     <html lang="pt-BR" className="dark">
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className="font-sans antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

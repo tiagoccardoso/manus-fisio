@@ -201,7 +201,7 @@ export function SmartNotifications({
           table: 'notifications',
           filter: `user_id=eq.${user.id}`
         },
-        (payload) => {
+        (payload: any) => {
           const newNotification = payload.new as Notification
           setNotifications(prev => [newNotification, ...prev])
           

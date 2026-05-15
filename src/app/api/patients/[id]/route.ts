@@ -22,7 +22,7 @@ const patientUpdateSchema = z.object({
 
 // GET a single patient by ID
 export async function GET(request: NextRequest) {
-  const supabase = createServerClient<Database>(
+  const supabase = createServerClient<any>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
@@ -64,7 +64,7 @@ export async function GET(request: NextRequest) {
 export async function PUT(
   request: NextRequest
 ) {
-    const supabase = createServerClient<Database>(
+    const supabase = createServerClient<any>(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
@@ -113,7 +113,7 @@ export async function PUT(
 export async function DELETE(
   request: NextRequest
 ) {
-    const supabase = createServerClient<Database>(
+    const supabase = createServerClient<any>(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {

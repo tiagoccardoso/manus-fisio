@@ -10,9 +10,9 @@ const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 // Verificar se as credenciais são válidas
 const hasValidCredentials = () => {
   return !!(
-    supabaseUrl && 
-    supabaseAnonKey && 
-    supabaseUrl.startsWith('https://') && 
+    supabaseUrl &&
+    supabaseAnonKey &&
+    supabaseUrl.startsWith('https://') &&
     supabaseAnonKey.length > 20 &&
     !supabaseUrl.includes('mock') &&
     !supabaseAnonKey.includes('mock') &&
@@ -23,16 +23,16 @@ const hasValidCredentials = () => {
 // Mock client para desenvolvimento
 const createMockSupabaseClient = () => {
   console.warn('🚧 Supabase Mock Mode: Credenciais não encontradas ou inválidas.')
-  
+
   return {
     auth: {
-      getUser: () => Promise.resolve({ 
-        data: { user: null }, 
-        error: null 
+      getUser: () => Promise.resolve({
+        data: { user: null },
+        error: null
       }),
-      getSession: () => Promise.resolve({ 
-        data: { session: null }, 
-        error: null 
+      getSession: () => Promise.resolve({
+        data: { session: null },
+        error: null
       }),
       signOut: () => Promise.resolve({ error: null }),
       onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } })
@@ -60,7 +60,7 @@ const createMockSupabaseClient = () => {
 // Este arquivo fornece um cliente mock quando as credenciais não estão disponíveis
 
 // Re-exportar o cliente do auth.ts
-export const supabase = hasValidCredentials() 
+export const supabase: any = hasValidCredentials()
   ? authClient<Database>(supabaseUrl!, supabaseAnonKey!)
   : createMockSupabaseClient()
 
@@ -127,7 +127,7 @@ export const isMockMode = () => {
 }
 
 // Cliente principal do Supabase - só inicializar no browser
-const supabasePrincipal = typeof window !== 'undefined' && hasValidCredentials() 
+const supabasePrincipal: any = typeof window !== 'undefined' && hasValidCredentials()
   ? createClient<Database>(supabaseUrl!, supabaseAnonKey!, {
       auth: {
         autoRefreshToken: true,
@@ -143,7 +143,7 @@ const supabasePrincipal = typeof window !== 'undefined' && hasValidCredentials()
   : createMockSupabaseClient()
 
 // Cliente para operações administrativas (server-side)
-export const supabaseAdmin = (hasValidCredentials() && serviceRoleKey)
+export const supabaseAdmin: any = (hasValidCredentials() && serviceRoleKey)
   ? createClient<Database>(supabaseUrl!, serviceRoleKey, {
       auth: {
         autoRefreshToken: false,
@@ -188,4 +188,4 @@ export const isAuthenticatedPrincipal = async () => {
 // Helper function to check if we're in mock mode
 export const isMockModePrincipal = () => {
   return !hasValidCredentials();
-}; 
+};
