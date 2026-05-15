@@ -134,11 +134,11 @@ export default function Settings() {
                       <p className="text-sm text-muted-foreground">{user?.full_name || 'Não informado'}</p>
                     </div>
                     <div>
-                      <label className="text-sm font-medium">Email</label>
+                      <label className="text-sm font-medium">E-mail</label>
                       <p className="text-sm text-muted-foreground">{user?.email || 'Não informado'}</p>
                     </div>
                     <div>
-                      <label className="text-sm font-medium">Role</label>
+                      <label className="text-sm font-medium">Perfil de acesso</label>
                       <p className="text-sm text-muted-foreground">{user?.role || 'Não informado'}</p>
                     </div>
                     <div>

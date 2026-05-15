@@ -553,8 +553,8 @@ export default function ProjectsPage() {
               <TabsList>
                 <TabsTrigger value="overview">Visão Geral</TabsTrigger>
                 <TabsTrigger value="kanban">Kanban</TabsTrigger>
-                <TabsTrigger value="timeline">Timeline</TabsTrigger>
-                <TabsTrigger value="analytics">Analytics</TabsTrigger>
+                <TabsTrigger value="timeline">Linha do tempo</TabsTrigger>
+                <TabsTrigger value="analytics">Análises</TabsTrigger>
               </TabsList>
 
               <div className="flex items-center gap-2">
@@ -594,7 +594,7 @@ export default function ProjectsPage() {
             <TabsContent value="timeline">
               <Card>
                 <CardHeader>
-                  <CardTitle>Timeline dos Projetos</CardTitle>
+                  <CardTitle>Linha do tempo dos Projetos</CardTitle>
                   <CardDescription>Visualização temporal dos projetos e marcos</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -630,7 +630,7 @@ export default function ProjectsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Distribuição por Status</CardTitle>
+                    <CardTitle>Distribuição por situação</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-3">

@@ -53,7 +53,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
     // Navegação
     {
       id: 'nav-dashboard',
-      title: 'Ir para Dashboard',
+      title: 'Ir para o Painel',
       description: 'Visualizar estatísticas e resumo geral',
       category: 'Navegação',
       icon: <Command className="h-4 w-4" />,
@@ -63,7 +63,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
     },
     {
       id: 'nav-notebooks',
-      title: 'Ir para Notebooks',
+      title: 'Ir para Cadernos',
       description: 'Gerenciar documentos e protocolos',
       category: 'Navegação',
       icon: <FileText className="h-4 w-4" />,

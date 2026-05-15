@@ -288,7 +288,7 @@ export function PatientProgressTab({ patientId }: { patientId: string }) {
 
         <Card>
           <CardHeader>
-            <CardTitle>Status dos Exercícios</CardTitle>
+            <CardTitle>Situação dos Exercícios</CardTitle>
           </CardHeader>
           <CardContent>
             {prescriptions.length > 0 ? (

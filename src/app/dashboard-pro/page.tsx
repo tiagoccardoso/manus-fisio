@@ -93,7 +93,7 @@ export default function DashboardPro() {
                   className="text-muted-foreground hover:text-foreground mb-2"
                 >
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Voltar ao Dashboard Clássico
+                  Voltar ao Painel Clássico
                 </Button>
                 <h1 className="text-3xl font-bold flex items-center gap-3">
                   <Crown className="h-8 w-8 text-primary" />
@@ -105,7 +105,7 @@ export default function DashboardPro() {
                 </h1>
                 <p className="text-muted-foreground mt-2 flex items-center gap-2">
                   <Rocket className="h-4 w-4" />
-                  Dashboard com IA e funcionalidades avançadas para {user?.full_name?.split(' ')[0] || 'Usuário'}
+                  Painel com IA e funcionalidades avançadas para {user?.full_name?.split(' ')[0] || 'Usuário'}
                 </p>
               </div>
               
@@ -184,7 +184,7 @@ export default function DashboardPro() {
             <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center justify-between">
-                  Notebooks IA
+                  Cadernos IA
                   <BookOpen className="h-4 w-4 text-blue-600" />
                 </CardTitle>
               </CardHeader>
@@ -239,7 +239,7 @@ export default function DashboardPro() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5 text-primary" />
-                Analytics Avançado com IA
+                Análises Avançadas com IA
               </CardTitle>
             </CardHeader>
             <CardContent>

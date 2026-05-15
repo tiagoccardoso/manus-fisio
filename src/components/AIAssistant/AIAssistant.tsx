@@ -139,7 +139,7 @@ const QuickActions = React.memo(({
       enabled: true
     },
     {
-      label: 'Analytics',
+      label: 'Análises',
       message: 'Mostre um resumo dos dados de desempenho da clínica',
       icon: BarChart3,
       enabled: true

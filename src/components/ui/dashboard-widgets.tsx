@@ -232,7 +232,7 @@ export function DashboardWidgets({ isEditMode, onToggleEditMode }: DashboardWidg
           <div className="grid grid-cols-2 gap-4">
             <div className="text-center">
               <div className="text-2xl font-bold text-primary">{widgetData.stats?.notebooks || 0}</div>
-              <div className="text-xs text-muted-foreground">Notebooks</div>
+              <div className="text-xs text-muted-foreground">Cadernos</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-green-500">{widgetData.stats?.projects || 0}</div>
@@ -363,7 +363,7 @@ export function DashboardWidgets({ isEditMode, onToggleEditMode }: DashboardWidg
     <div className="space-y-6">
       {/* Widget Controls */}
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">Dashboard Personalizado</h2>
+        <h2 className="text-2xl font-bold">Painel Personalizado</h2>
         <div className="flex items-center gap-3">
           <Button
             variant={isEditMode ? "default" : "outline"}

@@ -589,7 +589,7 @@ export default function TeamPage() {
                     <CardContent className="pt-0">
                       <div className="space-y-2">
                         <p className="text-xs sm:text-sm"><strong>CREFITO:</strong> <span className="break-all">{mentor.crefito}</span></p>
-                        <p className="text-xs sm:text-sm"><strong>Email:</strong> <span className="break-all">{mentor.email}</span></p>
+                        <p className="text-xs sm:text-sm"><strong>E-mail:</strong> <span className="break-all">{mentor.email}</span></p>
                         <div className="pt-2">
                           <Badge variant="secondary" className="text-xs">
                             {(mentorships ?? []).filter(m => m.mentor_id === mentor.id && m.status === 'active').length} estagiários ativos
@@ -622,7 +622,7 @@ export default function TeamPage() {
                       <CardContent className="pt-0">
                         <div className="space-y-3">
                           <p className="text-xs sm:text-sm"><strong>Semestre:</strong> {intern.semester}º</p>
-                          <p className="text-xs sm:text-sm"><strong>Email:</strong> <span className="break-all">{intern.email}</span></p>
+                          <p className="text-xs sm:text-sm"><strong>E-mail:</strong> <span className="break-all">{intern.email}</span></p>
                           
                           {mentorship && (
                             <div className="space-y-2">

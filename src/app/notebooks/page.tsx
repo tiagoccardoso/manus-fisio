@@ -109,7 +109,7 @@ export default function NotebooksPage() {
             className="mb-4"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Voltar aos Notebooks
+            Voltar aos Cadernos
           </Button>
         </div>
 
@@ -118,7 +118,7 @@ export default function NotebooksPage() {
           <div className="lg:col-span-2">
             <div className="space-y-4 mb-6">
               <Input
-                placeholder="Título do notebook"
+                placeholder="Título do caderno"
                 value={notebookTitle}
                 onChange={(e) => setNotebookTitle(e.target.value)}
                 className="text-lg font-semibold"
@@ -144,7 +144,7 @@ export default function NotebooksPage() {
               </Button>
               <Button onClick={handleSaveNotebook}>
                 <Save className="h-4 w-4 mr-2" />
-                Salvar Notebook
+                Salvar Caderno
               </Button>
             </div>
           </div>
@@ -153,7 +153,7 @@ export default function NotebooksPage() {
           <div className="lg:col-span-1">
             <CollaborationPanel
               documentId={editingNotebook?.id || 'new'}
-              documentTitle={editingNotebook?.title || 'Novo Notebook'}
+              documentTitle={editingNotebook?.title || 'Novo Caderno'}
             />
           </div>
         </div>
@@ -172,7 +172,7 @@ export default function NotebooksPage() {
             className="mb-4"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Voltar aos Notebooks
+            Voltar aos Cadernos
           </Button>
         </div>
 
@@ -202,7 +202,7 @@ export default function NotebooksPage() {
           {/* Header */}
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-foreground">Notebooks</h1>
+              <h1 className="text-3xl font-bold text-foreground">Cadernos</h1>
               <p className="text-muted-foreground mt-2">
                 Organize protocolos, avaliações e documentos clínicos
               </p>

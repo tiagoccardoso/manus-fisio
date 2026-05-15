@@ -215,7 +215,7 @@ export default function YouTubeTestPage() {
       {/* Status da API */}
       <Card>
         <CardHeader>
-          <CardTitle>Status da Configuração</CardTitle>
+          <CardTitle>Situação da configuração</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center gap-2">

@@ -214,7 +214,7 @@ export const AnalyticsDashboard = React.memo(() => {
     return {
       overview: [
         { name: 'Projetos', value: systemMetrics.totalProjects, color: '#82ca9d' },
-        { name: 'Notebooks', value: systemMetrics.totalNotebooks, color: '#ffc658' },
+        { name: 'Cadernos', value: systemMetrics.totalNotebooks, color: '#ffc658' },
         { name: 'Eventos', value: systemMetrics.totalEvents, color: '#ff7c7c' }
       ],
       projectsByStatus: Object.entries(projectAnalytics.projectsByStatus || {}).map(([status, count]) => ({
@@ -268,7 +268,7 @@ export const AnalyticsDashboard = React.memo(() => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Analytics Dashboard</h1>
+          <h1 className="text-3xl font-bold">Painel de Análises</h1>
           <p className="text-muted-foreground">
             Métricas e insights em tempo real do seu sistema
           </p>
@@ -313,7 +313,7 @@ export const AnalyticsDashboard = React.memo(() => {
           color="bg-green-500"
         />
         <MetricCard
-          title="Notebooks"
+          title="Cadernos"
           value={systemMetrics?.totalNotebooks || 0}
           icon={<BookOpen className="w-6 h-6 text-white" />}
           color="bg-purple-500"
@@ -372,7 +372,7 @@ export const AnalyticsDashboard = React.memo(() => {
                     stackId="1"
                     stroke="#8884d8"
                     fill="#8884d8"
-                    name="Notebooks"
+                    name="Cadernos"
                   />
                   <Area
                     type="monotone"
@@ -390,7 +390,7 @@ export const AnalyticsDashboard = React.memo(() => {
 
         <TabsContent value="projects" className="space-y-6">
           <div className="grid gap-6 md:grid-cols-2">
-            <ChartCard title="Status dos Projetos">
+            <ChartCard title="Situação dos Projetos">
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
                   <Pie

@@ -39,13 +39,13 @@ const shortcuts: Shortcut[] = [
   },
   {
     keys: ['G', 'H'],
-    description: 'Ir para Dashboard',
+    description: 'Ir para o Painel',
     category: 'Navegação',
     icon: <Home className="h-4 w-4" />
   },
   {
     keys: ['G', 'N'],
-    description: 'Ir para Notebooks',
+    description: 'Ir para Cadernos',
     category: 'Navegação',
     icon: <BookOpen className="h-4 w-4" />
   },

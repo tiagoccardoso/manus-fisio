@@ -19,7 +19,7 @@ async function runAIAssistant(prompt: string) {
     const response = await result.response
     return response.text()
   } catch (error) {
-    console.error('Error calling AI model:', error)
+    console.error('Erro ao chamar o modelo de IA:', error)
     throw new Error('Failed to get response from AI model.')
   }
 }
@@ -59,10 +59,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ result: resultText })
 
   } catch (error) {
-    console.error('Writing Assistant Error:', error)
+    console.error('Erro no assistente de escrita:', error)
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: 'Invalid request body' }, { status: 400 })
     }
-    return new Response('Internal Server Error', { status: 500 })
+    return new Response('Erro interno do servidor', { status: 500 })
   }
 } 

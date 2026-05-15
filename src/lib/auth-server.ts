@@ -69,7 +69,7 @@ export const getUser = async () => {
 export const requireAuth = async () => {
   const user = await getUser()
   if (!user) {
-    throw new Error('Authentication required')
+    throw new Error('Autenticação obrigatória')
   }
   return user
 }
@@ -77,7 +77,7 @@ export const requireAuth = async () => {
 export const requireRole = async (allowedRoles: string[]) => {
   const user = await requireAuth()
   if (!allowedRoles.includes(user.role)) {
-    throw new Error('Insufficient permissions')
+    throw new Error('Permissões insuficientes')
   }
   return user
 }

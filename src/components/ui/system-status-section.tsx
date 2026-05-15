@@ -11,7 +11,7 @@ export function SystemStatusSection() {
           <div>
             <CardTitle className="text-slate-50 flex items-center space-x-2">
               <CheckCircle className="h-5 w-5 text-green-500" />
-              <span>Sistema Manus Fisio - Status Completo</span>
+              <span>Sistema Manus Fisio - Situação Completa</span>
             </CardTitle>
             <CardDescription className="text-slate-300">
               Todas as 5 fases de desenvolvimento concluídas com sucesso
@@ -37,7 +37,7 @@ export function SystemStatusSection() {
           <div className="text-center">
             <div className="text-2xl font-bold text-green-400">✅</div>
             <p className="text-slate-300">Fase 3</p>
-            <p className="text-xs text-slate-400">Analytics</p>
+            <p className="text-xs text-slate-400">Análises</p>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-green-400">✅</div>
@@ -53,7 +53,7 @@ export function SystemStatusSection() {
         <div className="mt-4 pt-4 border-t border-slate-700">
           <div className="flex items-center justify-between text-sm">
             <span className="text-slate-300">🚀 Pronto para produção com todas as funcionalidades</span>
-            <span className="text-green-400">Build: 0 warnings, 0 errors</span>
+            <span className="text-green-400">Build: 0 avisos, 0 erros</span>
           </div>
         </div>
       </CardContent>

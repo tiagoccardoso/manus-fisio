@@ -12,7 +12,7 @@ const patientSchema = z.object({
   gender: z.string().optional(),
   cpf: z.string().optional(),
   phone: z.string().optional(),
-  email: z.string().email('Email inválido').optional(),
+  email: z.string().email('E-mail inválido').optional(),
   address: z.string().optional(),
   emergency_contact_name: z.string().optional(),
   emergency_contact_phone: z.string().optional(),

@@ -280,7 +280,7 @@ async function fetchAllExercises() {
   const supabase = await createServerAuthClient()
   const { data, error } = await supabase.from('exercises').select('id, name, description, category, difficulty_level')
   if (error) {
-    console.error('Error fetching exercises from DB:', error)
+    console.error('Erro ao buscar exercícios no banco de dados:', error)
     throw new Error('Falha ao buscar exercícios do banco de dados.')
   }
   return data
@@ -307,10 +307,10 @@ export async function POST(req: NextRequest) {
     })
 
   } catch (error) {
-    console.error('Exercise Recommendation Error:', error)
+    console.error('Erro na recomendação de exercícios:', error)
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: 'Invalid request body' }, { status: 400 })
     }
-    return new Response('Internal Server Error', { status: 500 })
+    return new Response('Erro interno do servidor', { status: 500 })
   }
 } 

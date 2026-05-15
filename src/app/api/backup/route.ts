@@ -50,11 +50,11 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       status: 'success',
-      message: `Backup ${backup_type} simulado concluído com sucesso.`, 
+      message: `Cópia de segurança ${backup_type} simulada concluída com sucesso.`,
       backupId: `simulated_backup_${Date.now()}`
     });
   } catch (error) {
-    console.error('Error during simulated backup:', error);
-    return new NextResponse('Internal Server Error', { status: 500 });
+    console.error('Erro durante a cópia de segurança simulada:', error);
+    return new NextResponse('Erro interno do servidor', { status: 500 });
   }
 }
