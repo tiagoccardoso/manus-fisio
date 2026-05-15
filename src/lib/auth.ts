@@ -3,7 +3,19 @@ import { createClient as supabaseCreateClient } from '@supabase/supabase-js';
 import { createClient as createServerClient } from '@/lib/supabase/server'; // Importando o cliente de servidor
 
 export const createClient = supabaseCreateClient;
-export const isMockMode = () => process.env.NEXT_PUBLIC_MOCK_MODE === 'true';
+export const isMockMode = () => {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  return (
+    process.env.NEXT_PUBLIC_MOCK_MODE === 'true' ||
+    process.env.NEXT_PUBLIC_MOCK_AUTH === 'true' ||
+    !supabaseUrl ||
+    !supabaseAnonKey ||
+    supabaseUrl.includes('mock') ||
+    supabaseAnonKey.includes('mock')
+  );
+};
 export const mockUser = {
   id: 'mock-user',
   email: 'mock@mock.com',

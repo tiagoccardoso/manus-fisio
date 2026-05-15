@@ -1,19 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
-import type { Database } from '@/types/database.types';
-import { createClient as createServiceRoleClient } from '@supabase/supabase-js'; // Cliente com service_role_key
-
-// Configuração do Supabase com service_role_key (apenas para uso no servidor!)
-const supabaseAdmin = createServiceRoleClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY! // Use a service role key aqui
-);
 
 export async function POST(req: NextRequest) {
-  const supabase = createServerClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  const supabase = createServerClient<any>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL || 'http://localhost:54321',
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'mock-anon-key-for-build',
     {
       cookies: {
         get(name: string) {
