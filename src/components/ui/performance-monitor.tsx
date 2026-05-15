@@ -487,7 +487,7 @@ export function PerformanceMonitor({
                   "grid w-full m-2",
                   metrics.ios.isIOS ? "grid-cols-4" : "grid-cols-3"
                 )}>
-                  <TabsTrigger value="overview" className="text-xs">Overview</TabsTrigger>
+                  <TabsTrigger value="overview" className="text-xs">Visão geral</TabsTrigger>
                   <TabsTrigger value="vitals" className="text-xs">Vitals</TabsTrigger>
                   <TabsTrigger value="resources" className="text-xs">Resources</TabsTrigger>
                   {metrics.ios.isIOS && (

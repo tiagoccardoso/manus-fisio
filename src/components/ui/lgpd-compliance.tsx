@@ -60,7 +60,7 @@ export function LGPDCompliance({
     },
     {
       id: 'analytics',
-      title: 'Analytics e Métricas',
+      title: 'Análises e Métricas',
       description: 'Coleta de dados para melhorar a experiência do usuário',
       required: false
     },

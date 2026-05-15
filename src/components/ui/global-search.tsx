@@ -271,7 +271,7 @@ export function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
                   <Command className="h-12 w-12 mx-auto mb-4 opacity-50" />
                   <p className="mb-2">Digite pelo menos 3 caracteres para buscar</p>
                   <div className="text-xs space-y-1">
-                    <p>• Notebooks e protocolos</p>
+                    <p>• Cadernos e protocolos</p>
                     <p>• Projetos e tarefas</p>
                     <p>• Usuários e equipe</p>
                     <p>• Eventos e configurações</p>

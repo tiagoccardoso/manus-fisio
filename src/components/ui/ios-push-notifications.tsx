@@ -54,7 +54,7 @@ export function IOSPushNotifications() {
           </div>
           <div>
             <h3 className="font-semibold">Notificações Push</h3>
-            <p className="text-sm text-muted-foreground">iOS Push Notifications</p>
+            <p className="text-sm text-muted-foreground">Notificações push do iOS</p>
           </div>
         </div>
         

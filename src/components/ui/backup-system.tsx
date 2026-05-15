@@ -144,10 +144,10 @@ export function BackupSystem() {
         total: tables.length,
         completed: tables.length,
         current_table: '',
-        status: 'Backup concluído com sucesso!'
+        status: 'Cópia de segurança concluída com sucesso!'
       })
 
-      toast.success('Backup criado com sucesso!')
+      toast.success('Cópia de segurança criada com sucesso!')
       
       setTimeout(() => {
         setBackupProgress(null)
@@ -155,7 +155,7 @@ export function BackupSystem() {
 
     } catch (error) {
       console.error('Erro ao criar backup:', error)
-      toast.error('Erro ao criar backup')
+      toast.error('Erro ao criar cópia de segurança')
       setBackupProgress(null)
     } finally {
       setIsCreatingBackup(false)
@@ -163,7 +163,7 @@ export function BackupSystem() {
   }
 
   const restoreBackup = async (backupId: string) => {
-    if (!confirm('Tem certeza que deseja restaurar este backup? Esta ação não pode ser desfeita.')) {
+    if (!confirm('Tem certeza que deseja restaurar esta cópia de segurança? Esta ação não pode ser desfeita.')) {
       return
     }
 
@@ -173,10 +173,10 @@ export function BackupSystem() {
       // Simular processo de restauração
       await new Promise(resolve => setTimeout(resolve, 3000))
       
-      toast.success('Backup restaurado com sucesso!')
+      toast.success('Cópia de segurança restaurada com sucesso!')
     } catch (error) {
       console.error('Erro ao restaurar backup:', error)
-      toast.error('Erro ao restaurar backup')
+      toast.error('Erro ao restaurar cópia de segurança')
     } finally {
       setIsRestoring(false)
     }
@@ -185,7 +185,7 @@ export function BackupSystem() {
   const downloadBackup = async (backupId: string, backupName: string) => {
     try {
       // Simular download do backup
-      const blob = new Blob(['Dados do backup simulados'], { type: 'application/json' })
+      const blob = new Blob(['Dados da cópia de segurança simulados'], { type: 'application/json' })
       const url = window.URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
@@ -195,10 +195,10 @@ export function BackupSystem() {
       document.body.removeChild(a)
       window.URL.revokeObjectURL(url)
       
-      toast.success('Download do backup iniciado!')
+      toast.success('Download da cópia de segurança iniciado!')
     } catch (error) {
       console.error('Erro ao baixar backup:', error)
-      toast.error('Erro ao baixar backup')
+      toast.error('Erro ao baixar cópia de segurança')
     }
   }
 
@@ -220,7 +220,7 @@ export function BackupSystem() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Database className="h-5 w-5" />
-            Sistema de Backup
+            Sistema de Cópias de Segurança
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -234,24 +234,24 @@ export function BackupSystem() {
 
   return (
     <div className="space-y-6">
-      {/* Controles de Backup */}
+      {/* Controles de cópia de segurança */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Database className="h-5 w-5" />
-            Sistema de Backup
+            Sistema de Cópias de Segurança
           </CardTitle>
           <CardDescription>
-            Gerencie backups automáticos e manuais do sistema
+            Gerencie cópias de segurança automáticas e manuais do sistema
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          {/* Status do Backup Automático */}
+          {/* Situação da cópia automática */}
           <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
             <div className="flex items-center gap-3">
               <Clock className="h-5 w-5 text-blue-500" />
               <div>
-                <p className="font-medium">Backup Automático</p>
+                <p className="font-medium">Cópia Automática</p>
                 <p className="text-sm text-muted-foreground">
                   {autoBackupEnabled ? 'Ativado' : 'Desativado'} • 
                   Próximo: {nextAutoBackup?.toLocaleString('pt-BR')}
@@ -263,7 +263,7 @@ export function BackupSystem() {
             </Badge>
           </div>
 
-          {/* Progresso do Backup */}
+          {/* Progresso da cópia de segurança */}
           {backupProgress && (
             <div className="space-y-3 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
               <div className="flex items-center gap-2">
@@ -289,7 +289,7 @@ export function BackupSystem() {
               className="flex items-center gap-2"
             >
               <HardDrive className="h-4 w-4" />
-              Criar Backup Manual
+              Criar Cópia Manual
             </Button>
             <Button 
               variant="outline"
@@ -297,18 +297,18 @@ export function BackupSystem() {
               className="flex items-center gap-2"
             >
               <Settings className="h-4 w-4" />
-              {autoBackupEnabled ? 'Desativar' : 'Ativar'} Auto Backup
+              {autoBackupEnabled ? 'Desativar' : 'Ativar'} cópia automática
             </Button>
           </div>
         </CardContent>
       </Card>
 
-      {/* Lista de Backups */}
+      {/* Lista de cópias de segurança */}
       <Card>
         <CardHeader>
-          <CardTitle>Histórico de Backups</CardTitle>
+          <CardTitle>Histórico de Cópias de Segurança</CardTitle>
           <CardDescription>
-            {backups.length} backup{backups.length !== 1 ? 's' : ''} disponível{backups.length !== 1 ? 'is' : ''}
+            {backups.length} cópia{backups.length !== 1 ? 's' : ''} de segurança disponível{backups.length !== 1 ? 'is' : ''}
           </CardDescription>
         </CardHeader>
         <CardContent>

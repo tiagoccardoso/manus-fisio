@@ -19,7 +19,7 @@
       "form_factor": "wide"
     },
     {
-      "src": "/icons/screenshot-mobile.png", 
+      "src": "/icons/screenshot-mobile.png",
       "sizes": "375x812",
       "type": "image/png",
       "form_factor": "narrow"
@@ -34,7 +34,7 @@
     },
     {
       "src": "/icons/icon-96x96.png",
-      "sizes": "96x96", 
+      "sizes": "96x96",
       "type": "image/png",
       "purpose": "maskable any"
     },
@@ -95,9 +95,9 @@
   ],
   "shortcuts": [
     {
-      "name": "Dashboard",
-      "short_name": "Dashboard",
-      "description": "Acesso rápido ao dashboard principal",
+      "name": "Painel",
+      "short_name": "Painel",
+      "description": "Acesso rápido ao painel principal",
       "url": "/",
       "icons": [
         {
@@ -108,9 +108,9 @@
       ]
     },
     {
-      "name": "Notebooks",
-      "short_name": "Notebooks", 
-      "description": "Acesso rápido aos notebooks",
+      "name": "Cadernos",
+      "short_name": "Cadernos",
+      "description": "Acesso rápido aos cadernos",
       "url": "/notebooks",
       "icons": [
         {
@@ -124,7 +124,7 @@
       "name": "Projetos",
       "short_name": "Projetos",
       "description": "Acesso rápido aos projetos",
-      "url": "/projects", 
+      "url": "/projects",
       "icons": [
         {
           "src": "/icons/shortcut-projects.png",
@@ -149,4 +149,4 @@
       "url": "/?handler=%s"
     }
   ]
-} 
+}

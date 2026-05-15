@@ -98,7 +98,7 @@ export default function MCPToolsPanel({ className }: MCPToolsPanelProps) {
           <TabsTrigger value="calendar">Agenda</TabsTrigger>
           <TabsTrigger value="patients">Pacientes</TabsTrigger>
           <TabsTrigger value="tasks">Tarefas</TabsTrigger>
-          <TabsTrigger value="analytics">Analytics</TabsTrigger>
+          <TabsTrigger value="analytics">Análises</TabsTrigger>
         </TabsList>
 
         {/* Sistema */}
@@ -107,7 +107,7 @@ export default function MCPToolsPanel({ className }: MCPToolsPanelProps) {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Activity className="h-4 w-4" />
-                Status do Sistema
+                Situação do Sistema
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -297,7 +297,7 @@ export default function MCPToolsPanel({ className }: MCPToolsPanelProps) {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="patient-email">Email</Label>
+                    <Label htmlFor="patient-email">E-mail</Label>
                     <Input
                       id="patient-email"
                       type="email"
@@ -438,7 +438,7 @@ export default function MCPToolsPanel({ className }: MCPToolsPanelProps) {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <BarChart3 className="h-4 w-4" />
-                Analytics e Relatórios
+                Análises e Relatórios
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">

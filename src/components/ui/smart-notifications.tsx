@@ -118,8 +118,8 @@ const mockNotifications: Notification[] = [
   {
     id: '5',
     type: 'system',
-    title: 'Backup Concluído',
-    message: 'Backup automático dos dados foi realizado com sucesso',
+    title: 'Cópia de Segurança Concluída',
+    message: 'A cópia de segurança automática dos dados foi realizada com sucesso',
     priority: 'low',
     read: true,
     created_at: new Date(Date.now() - 172800000).toISOString(),
@@ -603,7 +603,7 @@ export function NotificationSettings() {
                 <div className="space-y-1">
                   <Label className="flex items-center gap-2">
                     <Mail className="h-4 w-4" />
-                    Notificações por Email
+                    Notificações por e-mail
                   </Label>
                   <p className="text-sm text-muted-foreground">
                     Receber resumos por email
@@ -786,19 +786,19 @@ export function NotificationSettings() {
             <CardHeader>
               <CardTitle className="text-base flex items-center gap-2">
                 <Shield className="h-4 w-4" />
-                Status das Permissões
+                Situação das permissões
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm">Suporte a Push Notifications</span>
+                <span className="text-sm">Suporte a notificações push</span>
                 <Badge variant={isSupported ? 'default' : 'destructive'}>
                   {isSupported ? 'Suportado' : 'Não suportado'}
                 </Badge>
               </div>
               
               <div className="flex items-center justify-between">
-                <span className="text-sm">Permissão Push Notifications</span>
+                <span className="text-sm">Permissão para notificações push</span>
                 <Badge 
                   variant={
                     permission === 'granted' ? 'default' : 

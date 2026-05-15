@@ -278,8 +278,8 @@ export async function POST(req: NextRequest) {
       .single();
 
     if (patientError) {
-      console.error('Error fetching patient data:', patientError);
-      return NextResponse.json({ error: 'Patient not found' }, { status: 404 });
+      console.error('Erro ao buscar dados do paciente:', patientError);
+      return NextResponse.json({ error: 'Paciente não encontrado' }, { status: 404 });
     }
 
     // Generate AI-powered recommendations
@@ -322,7 +322,7 @@ export async function POST(req: NextRequest) {
     });
 
   } catch (error) {
-    console.error('AI Recommendations Error:', error);
+    console.error('Erro nas recomendações de IA:', error);
     return NextResponse.json(
       { error: 'Failed to generate recommendations' },
       { status: 500 }

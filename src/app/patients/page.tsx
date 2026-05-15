@@ -109,7 +109,7 @@ export default function PatientsPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Nome</TableHead>
-                    <TableHead>Email</TableHead>
+                    <TableHead>E-mail</TableHead>
                     <TableHead>Telefone</TableHead>
                     <TableHead>Idade</TableHead>
                     <TableHead>Cadastro</TableHead>

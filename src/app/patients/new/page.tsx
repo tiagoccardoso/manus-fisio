@@ -18,7 +18,7 @@ const patientFormSchema = z.object({
   }),
   cpf: z.string().optional(),
   phone: z.string().optional(),
-  email: z.string().email('Email inválido.').optional(),
+  email: z.string().email('E-mail inválido.').optional(),
 });
 
 export type PatientFormValues = z.infer<typeof patientFormSchema>;
@@ -83,7 +83,7 @@ export default function NewPatientPage() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="email">Email (Opcional)</Label>
+          <Label htmlFor="email">E-mail (Opcional)</Label>
           <Input id="email" type="email" {...register('email')} />
           {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
         </div>

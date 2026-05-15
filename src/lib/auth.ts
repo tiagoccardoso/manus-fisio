@@ -25,7 +25,7 @@ export async function authenticateRequest(req: NextRequest): Promise<NextRespons
     const { data: { user }, error } = await supabase.auth.getUser(token);
 
     if (error || !user) {
-      console.error('Authentication error:', error?.message || 'User not found');
+      console.error('Erro de autenticação:', error?.message || 'Usuário não encontrado');
       return new NextResponse('Unauthorized: Invalid token', { status: 401 });
     }
     

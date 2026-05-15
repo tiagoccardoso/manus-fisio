@@ -15,10 +15,10 @@ import { AIAssistant as NewAIAssistant, AIAssistantToggle } from '@/components/A
 import { ThemeCustomizer } from '@/components/ui/theme-customizer'
 import { PerformanceMonitor } from '@/components/ui/performance-monitor'
 import { useAuth } from '@/hooks/use-auth'
-import { 
-  Search, 
-  Settings, 
-  User, 
+import {
+  Search,
+  Settings,
+  User,
   LogOut,
   ChevronDown,
   Keyboard
@@ -75,7 +75,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           document.removeEventListener('keydown', handleSecondKey)
         }
         document.addEventListener('keydown', handleSecondKey)
-        
+
         // Remove listener após 2 segundos
         setTimeout(() => {
           document.removeEventListener('keydown', handleSecondKey)
@@ -100,7 +100,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       intern: { label: 'Estagiário', variant: 'outline' as const },
       guest: { label: 'Visitante', variant: 'destructive' as const },
     }
-    
+
     const config = roleConfig[role as keyof typeof roleConfig] || roleConfig.guest
     return <Badge variant={config.variant}>{config.label}</Badge>
   }
@@ -109,7 +109,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     <div className="min-h-screen bg-slate-950 flex">
       {/* Sidebar */}
       <Sidebar />
-      
+
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
@@ -119,8 +119,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="flex-1 max-w-md">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
-                <Input 
-                  placeholder="Buscar... (⌘K)" 
+                <Input
+                  placeholder="Pesquisar... (⌘K)"
                   className="pl-10 bg-slate-800 border-slate-700 text-white placeholder-slate-400 cursor-pointer"
                   onClick={openSearch}
                   readOnly
@@ -135,8 +135,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             {/* Actions */}
             <div className="flex items-center gap-3">
               {/* Keyboard Shortcuts */}
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 size="icon"
                 onClick={openShortcuts}
                 className="text-slate-300 hover:text-white hover:bg-slate-800"
@@ -146,8 +146,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               </Button>
 
               {/* Settings */}
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 size="icon"
                 onClick={() => router.push('/settings')}
                 className="text-slate-300 hover:text-white hover:bg-slate-800"
@@ -227,7 +227,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         onClick={() => setIsAIAssistantOpen(!isAIAssistantOpen)}
         hasNewInsights={false} // TODO: Implementar lógica de novos insights
       />
-      
+
       <NewAIAssistant
         isOpen={isAIAssistantOpen}
         onClose={() => setIsAIAssistantOpen(false)}
@@ -241,4 +241,4 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       <PerformanceMonitor />
     </div>
   )
-} 
+}

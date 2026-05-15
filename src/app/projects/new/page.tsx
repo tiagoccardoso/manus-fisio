@@ -201,7 +201,7 @@ export default function NewProject() {
                 {/* Status e Prioridade */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="status">Status</Label>
+                    <Label htmlFor="status">Situação</Label>
                     <Select
                       value={formData.status}
                       onValueChange={(value) => setFormData(prev => ({ ...prev, status: value }))}

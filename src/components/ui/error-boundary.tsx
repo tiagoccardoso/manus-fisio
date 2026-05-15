@@ -219,7 +219,7 @@ class ErrorBoundary extends Component<Props, State> {
                   </summary>
                   <div className="mt-3 space-y-3">
                     <div className="rounded-md bg-muted p-3">
-                      <h4 className="text-sm font-medium mb-2">Stack Trace:</h4>
+                      <h4 className="text-sm font-medium mb-2">Rastreamento da pilha:</h4>
                       <pre className="text-xs overflow-auto max-h-40 whitespace-pre-wrap">
                         {error?.stack}
                       </pre>
@@ -227,7 +227,7 @@ class ErrorBoundary extends Component<Props, State> {
                     
                     {errorInfo?.componentStack && (
                       <div className="rounded-md bg-muted p-3">
-                        <h4 className="text-sm font-medium mb-2">Component Stack:</h4>
+                        <h4 className="text-sm font-medium mb-2">Pilha de componentes:</h4>
                         <pre className="text-xs overflow-auto max-h-40 whitespace-pre-wrap">
                           {errorInfo.componentStack}
                         </pre>

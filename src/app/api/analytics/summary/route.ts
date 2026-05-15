@@ -39,19 +39,19 @@ export async function GET() {
 
     // Error handling for each RPC call
     if (totalPatientsRes.error) {
-      console.error('Error fetching total patients:', totalPatientsRes.error);
+      console.error('Erro ao buscar total de pacientes:', totalPatientsRes.error);
       throw new Error('Failed to fetch total patients');
     }
     if (appointmentsThisMonthRes.error) {
-      console.error('Error fetching appointments this month:', appointmentsThisMonthRes.error);
+      console.error('Erro ao buscar agendamentos deste mês:', appointmentsThisMonthRes.error);
       throw new Error('Failed to fetch appointments this month');
     }
     if (newPatientsThisMonthRes.error) {
-      console.error('Error fetching new patients this month:', newPatientsThisMonthRes.error);
+      console.error('Erro ao buscar novos pacientes deste mês:', newPatientsThisMonthRes.error);
       throw new Error('Failed to fetch new patients this month');
     }
     if (appointmentStatusDistributionRes.error) {
-      console.error('Error fetching appointment status distribution:', appointmentStatusDistributionRes.error);
+      console.error('Erro ao buscar distribuição da situação dos agendamentos:', appointmentStatusDistributionRes.error);
       throw new Error('Failed to fetch appointment status distribution');
     }
 
@@ -107,7 +107,7 @@ export async function GET() {
     return NextResponse.json(summary);
 
   } catch (error) {
-    console.error('Error fetching analytics summary:', error);
+    console.error('Erro ao buscar resumo de análises:', error);
     
     // Return partial data with error indication
     return NextResponse.json(

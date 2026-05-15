@@ -135,7 +135,7 @@ export default function ProjectsPageNew() {
       )
 
     } catch (err) {
-      console.error('Error loading projects:', err)
+      console.error('Erro ao carregar projetos:', err)
       setError('Erro ao carregar projetos')
       setProjects(mockProjects)
     } finally {
