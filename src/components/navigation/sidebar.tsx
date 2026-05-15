@@ -30,13 +30,13 @@ import {
 const navigationItems = [
   {
     href: '/',
-    label: 'Dashboard',
+    label: 'Painel',
     icon: Home,
     badge: null
   },
   {
     href: '/notebooks',
-    label: 'Notebooks',
+    label: 'Cadernos',
     icon: BookOpen,
     badge: null
   },
@@ -72,19 +72,19 @@ const navigationItems = [
   },
   {
     href: '/analytics',
-    label: 'Analytics',
+    label: 'Análises',
     icon: BarChart3,
     badge: null
   },
   {
     href: '/system-monitor',
-    label: 'Monitor Sistema',
+    label: 'Monitor do Sistema',
     icon: Monitor,
     badge: null
   },
   {
     href: '/backup',
-    label: 'Backup',
+    label: 'Cópias de Segurança',
     icon: HardDrive,
     badge: null
   },
@@ -105,7 +105,7 @@ const navigationItems = [
 const quickActions = [
   {
     href: '/notebooks',
-    label: 'Novo Notebook',
+    label: 'Novo Caderno',
     icon: BookOpen
   },
   {

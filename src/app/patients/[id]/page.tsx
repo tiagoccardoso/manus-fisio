@@ -129,7 +129,7 @@ export default function PatientDetailPage({
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4" />
-                Email
+                E-mail
               </div>
               <p className="font-medium">{patient.email || 'Não informado'}</p>
             </div>
@@ -177,7 +177,7 @@ export default function PatientDetailPage({
           <TabsTrigger value="exercises">Plano de Exercícios</TabsTrigger>
           <TabsTrigger value="progress">Evolução</TabsTrigger>
           <TabsTrigger value="documents">Documentos</TabsTrigger>
-          <TabsTrigger value="ai-insights">IA Insights</TabsTrigger>
+          <TabsTrigger value="ai-insights">Insights de IA</TabsTrigger>
         </TabsList>
 
         <TabsContent value="records" className="mt-6">

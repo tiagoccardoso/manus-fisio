@@ -36,7 +36,7 @@ export function EnhancedFeaturesSection() {
           <CardHeader className="pb-2">
             <div className="flex items-center space-x-2">
               <Shield className="h-5 w-5 text-green-400" />
-              <CardTitle className="text-sm text-slate-50">Backup Inteligente</CardTitle>
+              <CardTitle className="text-sm text-slate-50">Cópia de Segurança Inteligente</CardTitle>
             </div>
           </CardHeader>
           <CardContent>

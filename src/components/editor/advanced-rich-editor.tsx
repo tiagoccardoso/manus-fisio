@@ -248,7 +248,7 @@ const PHYSIO_TEMPLATES = {
 <hr>
 <p><strong>Fisioterapeuta:</strong> [Nome]<br>
 <strong>CREFITO:</strong> [Número]<br>
-<strong>Contato:</strong> [Telefone/Email]</p>`
+<strong>Contato:</strong> [Telefone/E-mail]</p>`
   },
 
   alta_fisioterapeutica: {

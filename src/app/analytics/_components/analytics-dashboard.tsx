@@ -100,7 +100,7 @@ export default function AnalyticsDashboard() {
       <div className="flex items-center justify-center h-full">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Carregando dashboard...</p>
+          <p className="text-muted-foreground">Carregando painel...</p>
         </div>
       </div>
     );
@@ -109,7 +109,7 @@ export default function AnalyticsDashboard() {
   if (error) {
     return (
       <div className="flex items-center justify-center h-full">
-        <p className="text-red-500">Erro ao carregar o dashboard: {(error as Error).message}</p>
+        <p className="text-red-500">Erro ao carregar o painel: {(error as Error).message}</p>
       </div>
     );
   }
@@ -122,7 +122,7 @@ export default function AnalyticsDashboard() {
   return (
     <div className="flex-1 space-y-4 p-8 pt-6">
       <div className="flex items-center justify-between space-y-2">
-        <h2 className="text-3xl font-bold tracking-tight">Dashboard de Analytics</h2>
+        <h2 className="text-3xl font-bold tracking-tight">Painel de Análises</h2>
         <Badge variant="outline" className="text-sm">
           Última atualização: {new Date().toLocaleTimeString('pt-BR')}
         </Badge>
@@ -164,7 +164,7 @@ export default function AnalyticsDashboard() {
         {/* Status Distribution Chart */}
         <Card className="col-span-4">
           <CardHeader>
-            <CardTitle>Status dos Agendamentos</CardTitle>
+            <CardTitle>Situação dos Agendamentos</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
             <ResponsiveContainer width="100%" height={350}>
@@ -209,7 +209,7 @@ export default function AnalyticsDashboard() {
         {/* Status Summary Cards */}
         <Card className="col-span-3">
           <CardHeader>
-            <CardTitle>Resumo por Status</CardTitle>
+            <CardTitle>Resumo por situação</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {data?.appointmentStatusDistribution?.map((item, index) => {
@@ -288,7 +288,7 @@ export default function AnalyticsDashboard() {
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                <span className="text-sm">Dashboard de produtividade da equipe</span>
+                <span className="text-sm">Painel de produtividade da equipe</span>
               </div>
             </div>
           </CardContent>

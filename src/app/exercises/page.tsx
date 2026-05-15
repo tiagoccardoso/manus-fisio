@@ -39,7 +39,7 @@ interface Protocol {
 
 type ViewMode = 'library' | 'create' | 'edit' | 'prescribe' | 'protocols'
 
-// Categorias anatômicas inspiradas no Lumi Dashboard
+// Categorias anatômicas inspiradas no Painel Lumi
 const anatomicalRegions = [
   'Todos',
   'Cervical', 

@@ -281,7 +281,7 @@ export default function AIAutomationPage() {
                     </div>
 
                     <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                      <span>Status: {isProfileComplete() ? 'Completo' : 'Incompleto'}</span>
+                      <span>Situação: {isProfileComplete() ? 'Completo' : 'Incompleto'}</span>
                       <Badge variant={isProfileComplete() ? 'default' : 'secondary'}>
                         {Object.values(aiProfile).filter(v => v).length}/5
                       </Badge>

@@ -262,9 +262,9 @@ export default function Dashboard() {
         <DashboardLayout>
           <div className="p-6">
             <div className="flex items-center justify-between mb-6">
-              <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
+              <h1 className="text-2xl font-bold">Painel de Análises</h1>
               <Button onClick={() => setShowAnalytics(false)} variant="outline">
-                Voltar ao Dashboard
+                Voltar ao Painel
               </Button>
             </div>
             <AnalyticsDashboard />
@@ -297,7 +297,7 @@ export default function Dashboard() {
                 size="sm"
               >
                 <Grid3X3 className="h-4 w-4 mr-2" />
-                {showAdvancedDashboard ? 'Dashboard Padrão' : 'Dashboard Avançado'}
+                {showAdvancedDashboard ? 'Painel Padrão' : 'Painel Avançado'}
               </Button>
 
               {/* Analytics Dashboard */}
@@ -307,7 +307,7 @@ export default function Dashboard() {
                 size="sm"
               >
                 <BarChart3 className="h-4 w-4 mr-2" />
-                Analytics
+                Análises
               </Button>
             </div>
           </div>
@@ -351,7 +351,7 @@ export default function Dashboard() {
                   <>
                     <EnhancedCard variant="elevated" animation="fade" className="hover-lift bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 border-blue-200">
                       <EnhancedCardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <EnhancedCardTitle className="text-sm font-medium text-blue-700">Total de Notebooks</EnhancedCardTitle>
+                        <EnhancedCardTitle className="text-sm font-medium text-blue-700">Total de Cadernos</EnhancedCardTitle>
                         <BookOpen className="h-4 w-4 text-blue-600 animate-float" />
                       </EnhancedCardHeader>
                       <EnhancedCardContent>

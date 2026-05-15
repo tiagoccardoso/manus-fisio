@@ -101,7 +101,7 @@ export function PatientAIInsights({ patientId }: PatientAIInsightsProps) {
           </TabsTrigger>
           <TabsTrigger value="analytics">
             <Activity className="h-4 w-4 mr-2" />
-            Analytics
+            Análises
           </TabsTrigger>
         </TabsList>
 

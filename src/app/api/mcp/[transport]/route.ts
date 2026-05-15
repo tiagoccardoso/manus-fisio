@@ -519,8 +519,8 @@ const tools = {
         return {
           content: [{
             type: "text",
-            text: `💾 Backup ${backup_type} realizado com sucesso!\n\n` +
-                  `📦 ID do Backup: ${backupResult.backup_id}\n` +
+            text: `💾 Cópia de segurança ${backup_type} realizada com sucesso!\n\n` +
+                  `📦 ID da cópia de segurança: ${backupResult.backup_id}\n` +
                   `💾 Tamanho: ${backupResult.size_mb} MB\n` +
                   `🔒 Criptografado: ${encryption ? 'Sim' : 'Não'}\n` +
                   `📁 Inclui arquivos: ${include_files ? 'Sim' : 'Não'}\n` +

@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
 
     if (!projectId) {
       return NextResponse.json(
-        { error: 'Project ID is required' },
+        { error: 'O ID do projeto é obrigatório' },
         { status: 400 }
       );
     }
@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
     if (error) {
       console.error('Error fetching tasks:', error);
       return NextResponse.json(
-        { error: 'Failed to fetch tasks' },
+        { error: 'Falha ao buscar tarefas' },
         { status: 500 }
       );
     }
@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Unexpected error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Erro interno do servidor' },
       { status: 500 }
     );
   }
@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
     if (error) {
       console.error('Error creating task:', error);
       return NextResponse.json(
-        { error: 'Failed to create task' },
+        { error: 'Falha ao criar tarefa' },
         { status: 500 }
       );
     }
@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Unexpected error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Erro interno do servidor' },
       { status: 500 }
     );
   }
@@ -94,7 +94,7 @@ export async function PUT(request: NextRequest) {
 
     if (!id) {
       return NextResponse.json(
-        { error: 'Task ID is required' },
+        { error: 'O ID da tarefa é obrigatório' },
         { status: 400 }
       );
     }
@@ -114,7 +114,7 @@ export async function PUT(request: NextRequest) {
     if (error) {
       console.error('Error updating task:', error);
       return NextResponse.json(
-        { error: 'Failed to update task' },
+        { error: 'Falha ao atualizar tarefa' },
         { status: 500 }
       );
     }
@@ -123,7 +123,7 @@ export async function PUT(request: NextRequest) {
   } catch (error) {
     console.error('Unexpected error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Erro interno do servidor' },
       { status: 500 }
     );
   }
@@ -138,7 +138,7 @@ export async function DELETE(request: NextRequest) {
 
     if (!id) {
       return NextResponse.json(
-        { error: 'Task ID is required' },
+        { error: 'O ID da tarefa é obrigatório' },
         { status: 400 }
       );
     }
@@ -151,7 +151,7 @@ export async function DELETE(request: NextRequest) {
     if (error) {
       console.error('Error deleting task:', error);
       return NextResponse.json(
-        { error: 'Failed to delete task' },
+        { error: 'Falha ao excluir tarefa' },
         { status: 500 }
       );
     }
@@ -160,7 +160,7 @@ export async function DELETE(request: NextRequest) {
   } catch (error) {
     console.error('Unexpected error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Erro interno do servidor' },
       { status: 500 }
     );
   }

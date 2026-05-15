@@ -78,7 +78,7 @@ export default function PublicPage() {
             <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader>
                 <BookOpen className="h-8 w-8 text-blue-500 mb-2" />
-                <CardTitle className="text-white">Sistema de Notebooks</CardTitle>
+                <CardTitle className="text-white">Sistema de Cadernos</CardTitle>
                 <CardDescription className="text-slate-400">
                   Editor rico para documentação e anotações clínicas
                 </CardDescription>
